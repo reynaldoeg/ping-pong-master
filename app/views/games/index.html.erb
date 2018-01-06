@@ -1,0 +1,23 @@
+<h1 class='page-header'>History</h1>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>User1</th>
+      <th>User2</th>
+      <th>score</th>
+      <th>Winner</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= game.user1_id %></td>
+        <td><%= game.user2_id %></td>
+        <td><%= "#{game.user1_score} - #{game.user2_score}" %></td>
+        <td><%= game.winner %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

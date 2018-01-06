@@ -1,0 +1,55 @@
+<%= form_with(model: game, local: true, :html => {:class => "form-horizontal"}) do |form| %>
+  <% if game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+      <% game.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group hidden">
+    <% @currentUser = current_user.id %>
+    <%= form.label "Your id:",class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :user1_id, id: :game_user1_id, class: 'form-control', value: @currentUser %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Opponent:', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :user2_id, id: :game_user2_id, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Your Score:', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :user1_score, id: :game_user1_score, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Their Score:', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :user2_score, id: :game_user2_score, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label 'Winner', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= form.number_field :winner, id: :game_winner, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= form.submit "Save", class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
