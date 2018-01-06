@@ -15,12 +15,12 @@
     <% @currentUser = current_user.id %>
     <%= form.label "Your id:",class: 'col-sm-2 control-label' %>
     <div class="col-sm-10">
-      <%= form.number_field :user1_id, id: :game_user1_id, class: 'form-control', value: @currentUser %>
+      <%= form.number_field :user_id, id: :game_user_id, class: 'form-control', value: @currentUser %>
     </div>
   </div>
 
   <div class="form-group">
-    <%= form.label 'Opponent:', class: 'col-sm-2 control-label' %>
+    <%= form.label 'Opponent Id:', class: 'col-sm-2 control-label' %>
     <div class="col-sm-10">
       <%= form.number_field :user2_id, id: :game_user2_id, class: 'form-control' %>
     </div>
@@ -40,12 +40,7 @@
     </div>
   </div>
 
-  <div class="form-group">
-    <%= form.label 'Winner', class: 'col-sm-2 control-label' %>
-    <div class="col-sm-10">
-      <%= form.number_field :winner, id: :game_winner, class: 'form-control' %>
-    </div>
-  </div>
+  
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

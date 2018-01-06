@@ -4,19 +4,21 @@
   <thead>
     <tr>
       <th>Rank</th>
-      <th>Name</th>
+      <th>Id</th>
+      <th>Email</th>
       <th>score</th>
       <th>Games Played</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
+    <% @users.each_with_index do |user, index| %>
       <tr>
-        <td><%= user.rank %></td>
-        <td><%= user.name %></td>
-        <td><%= user.rating %></td>
+        <td><%= index+1 %></td>
+        <td><%= user.id %></td>
         <td><%= user.email %></td>
+        <td><%= user.rating %></td>
+        <td><%= user.game.length %></td>
       </tr>
     <% end %>
   </tbody>

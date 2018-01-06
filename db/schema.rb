@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 20180106200907) do
 
   create_table "games", force: :cascade do |t|
-    t.integer "user1_id"
+    t.integer "user_id"
     t.integer "user2_id"
     t.integer "user1_score"
     t.integer "user2_score"

@@ -4,7 +4,12 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    
+    currentUser = current_user.id
+    
+    @user = User.find(currentUser)
+    
+    @games =  @user.game #Game.users
   end
 
   # GET /games/1
@@ -25,7 +30,22 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(game_params)
-
+    
+    user_score =  params[:game][:user1_score]
+    user2_score = params[:game][:user2_score]
+    
+    if ( user_score > user2_score)
+      @game.winner = params[:game][:user_id]
+    else
+      @game.winner = params[:game][:user2_id]
+    end
+  
+    user = User.find(@game.winner)
+    
+    user.rating += 1
+    
+    user.save
+    
     respond_to do |format|
       if @game.save
         format.html { redirect_to '/history', notice: 'Game was successfully created.' }
@@ -69,6 +89,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:user1_id, :user2_id, :user1_score, :user2_score, :winner)
+      params.require(:game).permit(:user_id, :user2_id, :user1_score, :user2_score, :winner)
     end
 end
